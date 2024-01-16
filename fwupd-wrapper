@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+CHANNEL=$(dpkg-query -f '${Version}' -W fwupd-snap | awk -F "-" '{print $1}')/stable
+COMMAND=$(basename $0)
+if ! [ -x /snap/bin/fwupd.$COMMAND ]; then
+    echo "" >&2
+    echo "Command '$0' requires the fwupd snap to be installed." >&2
+    echo "Please install it with:" >&2
+    echo "" >&2
+    echo "snap install fwupd --channel $CHANNEL" >&2
+    echo "" >&2
+    exit 1
+fi
+
+exec /snap/bin/fwupd.$COMMAND "$@"

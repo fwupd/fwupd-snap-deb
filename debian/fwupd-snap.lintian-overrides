@@ -1,0 +1,4 @@
+# manpages
+fwupd-snap: no-manual-page [usr/bin/fwupdmgr]
+fwupd-snap: no-manual-page [usr/bin/fwupdtool]
+fwupd-snap: no-manual-page [usr/bin/dbxtool]

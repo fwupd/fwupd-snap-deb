@@ -1,0 +1,94 @@
+#!/bin/sh -e
+
+CHANNEL=$(dpkg-query -f '${Version}' -W fwupd-snap | awk -F "-" '{print $1}')/stable
+
+skip_unusable_snapd() {
+    if [ -e "/run/snapd.socket" ]; then
+        # Snapd is present, run the upgrade
+        return 1
+    fi
+
+    return 0
+}
+
+case "$1" in
+    install|upgrade)
+        . /usr/share/debconf/confmodule
+
+        echo "=> Installing the fwupd snap"
+
+        # Warn about downtime
+        if [ -e "/usr/libexec/fwupd/fwupd" ]; then
+            db_input high fwupd/snap-upgrade-warning || true
+            db_go
+        fi
+
+        # Check store connectivity
+        echo "==> Checking connectivity with the snap store"
+        COUNT=0
+        SKIP=false
+        while :; do
+            if skip_unusable_snapd; then
+                echo "===> System doesn't have a working snapd, skipping"
+                SKIP=true
+                break
+            fi
+
+            snap info fwupd >/dev/null 2>&1 && break
+
+            db_fset fwupd/snap-no-connectivity seen false
+            if ! db_input critical fwupd/snap-no-connectivity; then
+                db_go
+
+                if [ "${COUNT}" = "0" ]; then
+                    echo "===> Unable to contact the store, trying every minute for the next 30 minutes"
+                elif [ "${COUNT}" = "10" ]; then
+                    echo "===> Still unable to contact the store, trying for another 20 minutes"
+                elif [ "${COUNT}" = "20" ]; then
+                    echo "===> Still unable to contact the store, trying for another 10 minutes"
+                elif [ "${COUNT}" = "30" ]; then
+                    echo "===> Still unable to contact the store, aborting"
+                    exit 1
+                fi
+
+                sleep 1m
+            else
+                db_go
+                db_get fwupd/snap-no-connectivity
+                if [ "${RET}" = "Abort" ]; then
+                    echo "===> Aborting at user request"
+                    exit 1
+                elif [ "${RET}" = "Skip" ]; then
+                    echo "===> Skipping at user request"
+                    SKIP=true
+                    break
+                fi
+
+                if [ "${COUNT}" = "0" ]; then
+                    echo "===> Unable to contact the store"
+                fi
+            fi
+
+            COUNT=$((COUNT+1))
+        done
+
+        if ! ${SKIP}; then
+            # Install the snap
+            echo "==> Installing the fwupd snap"
+            snap install fwupd --channel $CHANNEL
+            echo "=> Snap installation complete"
+        fi
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

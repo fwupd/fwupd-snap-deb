@@ -1,0 +1,77 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the fwupd-snap package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: fwupd-snap\n"
+"Report-Msgid-Bugs-To: fwupd-snap@packages.debian.org\n"
+"POT-Creation-Date: 2024-01-16 16:27-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: note
+#. Description
+#: ../fwupd-snap.templates:1001
+msgid "Upgrade to the fwupd snap"
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../fwupd-snap.templates:1001
+msgid ""
+"fwupd is distributed by upstream fwupd maintainer in snap form directly to "
+"Ubuntu. This replaces the Debian package distributed with Ubuntu."
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../fwupd-snap.templates:1001
+msgid ""
+"This package update will transition your system over to the snap by "
+"installing it."
+msgstr ""
+
+#. Type: select
+#. Description
+#: ../fwupd-snap.templates:2001
+msgid "Unable to reach the snap store"
+msgstr ""
+
+#. Type: select
+#. Description
+#: ../fwupd-snap.templates:2001
+msgid ""
+"Your system is unable to reach the snap store, please make sure you're "
+"connected to the Internet and update any firewall or proxy settings as "
+"needed so that you can reach the snap store."
+msgstr ""
+
+#. Type: select
+#. Description
+#: ../fwupd-snap.templates:2001
+msgid "You can manually check for connectivity by running \"snap info fwupd\""
+msgstr ""
+
+#. Type: select
+#. Description
+#: ../fwupd-snap.templates:2001
+msgid ""
+"Aborting will cause the upgrade to fail and will require it to be re-"
+"attempted once snapd is functional on the system."
+msgstr ""
+
+#. Type: select
+#. Description
+#: ../fwupd-snap.templates:2001
+msgid ""
+"Skipping will let the package upgrade continue but fwupd will not be "
+"functional until the fwupd snap is installed."
+msgstr ""

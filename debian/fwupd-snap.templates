@@ -1,0 +1,24 @@
+Template: fwupd/snap-upgrade-warning
+Type: note
+_Description: Upgrade to the fwupd snap
+ fwupd is distributed by upstream fwupd maintainer in snap form directly
+ to Ubuntu. This replaces the Debian package distributed with Ubuntu.
+ .
+ This package update will transition your system over to the snap by
+ installing it.
+
+Template: fwupd/snap-no-connectivity
+Type: select
+Choices: Retry, Abort, Skip
+_Description: Unable to reach the snap store
+ Your system is unable to reach the snap store, please make sure you're
+ connected to the Internet and update any firewall or proxy settings as
+ needed so that you can reach the snap store.
+ .
+ You can manually check for connectivity by running "snap info fwupd"
+ .
+ Aborting will cause the upgrade to fail and will require it to be re-attempted
+ once snapd is functional on the system.
+ .
+ Skipping will let the package upgrade continue but fwupd will not be
+ functional until the fwupd snap is installed.

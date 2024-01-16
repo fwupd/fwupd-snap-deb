@@ -1,0 +1,21 @@
+Source: fwupd-snap
+Section: admin
+Priority: optional
+Maintainer: Mario Limonciello <superm1@ubuntu.com>
+Vcs-Git: https://github.com/fwupd/fwupd-snap-deb.git
+Vcs-Browser: https://github.com/fwupd/fwupd-snap-deb
+Build-Depends: debhelper (>= 11)
+Standards-Version: 4.2.1
+
+Package: fwupd-snap
+Architecture: amd64
+Pre-Depends: debconf, snapd
+Depends: ${misc:Depends}
+Replaces: fwupd (<< 2.0)
+Breaks: fwupd (<< 2.0)
+Provides: fwupd
+Section: oldlibs
+Description: Transitional package - fwupd -> fwupd snap
+ This is a transitional dummy package. It can safely be removed.
+ .
+ fwupd is now replaced by the fwupd snap.

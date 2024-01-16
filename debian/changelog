@@ -1,0 +1,5 @@
+fwupd-snap (1.9.x-0ubuntu1) noble; urgency=medium
+
+  * Initial release
+
+ -- Mario Limonciello <superm1@gmail.com>  Tue, 16 Jan 2024 15:57:30 -0600

@@ -1,0 +1,4 @@
+
+usr/lib/fwupd/fwupd-wrapper usr/bin/fwupdmgr
+usr/lib/fwupd/fwupd-wrapper usr/bin/fwupdtool
+usr/lib/fwupd/fwupd-wrapper usr/bin/dbxtool
