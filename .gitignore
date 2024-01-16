@@ -1,0 +1,8 @@
+.debhelper
+debian/fwupd-snap/
+debian/files
+debian/*.debhelper
+debian/*.substvars
+debian/*stamp
+fwupd-snap_*
+tmp/
