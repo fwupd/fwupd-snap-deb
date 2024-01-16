@@ -17,4 +17,13 @@ jobs:
         sudo apt install debhelper dpkg-dev -y
     - name: package
       run: |
+        mkdir -p tmp
+        cd tmp && \
+        ln -s ../fwupd-wrapper ../debian . && \
         dpkg-buildpackage -us -uc
+    - name: Capture artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: debian package
+        path: |
+          *.deb
