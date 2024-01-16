@@ -17,4 +17,4 @@ jobs:
         sudo apt install debhelper dpkg-dev -y
     - name: package
       run: |
-        dpkg-buildpackage
+        dpkg-buildpackage -us -uc
