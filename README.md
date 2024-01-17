@@ -21,7 +21,7 @@ dpkg-buildpackage -us -uc -b
 To install the Debian package, run the following command:
 
 ```shell
-sudo apt -i ./fwupd-snap_*.deb
+sudo apt install ./fwupd-snap_*.deb
 ```
 
 This will implicitly install the snap package as well.
