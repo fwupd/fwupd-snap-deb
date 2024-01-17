@@ -1,0 +1,25 @@
+name: Pull Request reviews
+on:
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Refresh dependencies
+        run: sudo apt update
+      - name: Install apt dependencies
+        run: sudo apt install shellcheck python3-pip -y
+      - name: Install pre-commit
+        run: pip install pre-commit
+      - name: Run pre-commit hooks
+        run: |
+          sed -i "/no-commit-to-branch/,+1d" .pre-commit-config.yaml
+          pre-commit run --hook-stage commit --all-files
