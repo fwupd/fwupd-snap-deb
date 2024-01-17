@@ -1,9 +1,14 @@
 #!/bin/sh -e
 
+if [ ! -d /root/snap/fwupd ]; then
+        MIGRATE=1
+fi
+
 # this will build the initial /root/snap/fwupd/current symlink
 systemctl start snap.fwupd.fwupd.service
 
-if [ "$1" = "configure" ]; then
+# only migrate the first install of snap
+if [ "$1" = "configure" ] && [ -n $MIGRATE ]; then
         mkdir -p /root/snap/fwupd/current/etc/fwupd/remotes.d
         if [ -f /etc/fwupd/fwupd.conf ]; then
                 cp /etc/fwupd/fwupd.conf /root/snap/fwupd/current/etc/fwupd/
