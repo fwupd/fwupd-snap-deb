@@ -1,20 +1,21 @@
 #!/bin/sh -e
 
-if [ ! -d /root/snap/fwupd ]; then
+if [ ! -d /var/snap/fwupd/common/var/etc/fwupd ]; then
         MIGRATE=1
 fi
 
-# this will build the initial /root/snap/fwupd/current symlink
+# this will build the initial /var/snap/fwupd/common directory structure
 systemctl start snap.fwupd.fwupd.service
 
 # only migrate the first install of snap
 if [ "$1" = "configure" ] && [ -n $MIGRATE ]; then
-        mkdir -p /root/snap/fwupd/current/etc/fwupd/remotes.d
         if [ -f /etc/fwupd/fwupd.conf ]; then
-                cp /etc/fwupd/fwupd.conf /root/snap/fwupd/current/etc/fwupd/
+                mkdir -p /var/snap/fwupd/common/var/etc/fwupd
+                cp /etc/fwupd/fwupd.conf /var/snap/fwupd/common/var/etc/fwupd
         fi
         if [ -d /etc/fwupd/remotes.d ]; then
-                cp /etc/fwupd/remotes.d/* /root/snap/fwupd/current/etc/fwupd/remotes.d/
+                mkdir -p /var/snap/fwupd/common/var/lib/fwupd/remotes.d
+                cp /etc/fwupd/remotes.d/* /var/snap/fwupd/common/var/lib/fwupd/remotes.d
         fi
 fi
 
