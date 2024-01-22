@@ -1,4 +1,6 @@
-# manpages
-fwupd-snap: no-manual-page [usr/bin/fwupdmgr]
-fwupd-snap: no-manual-page [usr/bin/fwupdtool]
-fwupd-snap: no-manual-page [usr/bin/dbxtool]
+# manpages come with the snap
+fwupd-snap: no-manual-page usr/bin/dbxtool
+fwupd-snap: no-manual-page usr/bin/fwupdmgr
+fwupd-snap: no-manual-page usr/bin/fwupdtool
+# service comes from snap not deb
+fwupd-snap: maintainer-script-calls-systemctl
