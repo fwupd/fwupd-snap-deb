@@ -1,29 +1,29 @@
-name: build
-
+name: Build Workflow
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_call:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      deb: ${{ steps.package.outputs.deb }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: deps
       run: |
         sudo apt update
         sudo apt install debhelper dpkg-dev -y
     - name: package
+      id: package
       run: |
         mkdir -p tmp
         cd tmp && \
         ln -s ../fwupd-wrapper ../debian . && \
         dpkg-buildpackage -us -uc
+        echo "deb=$(ls *.deb)" >> $GITHUB_OUTPUT
     - name: Capture artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: debian package
+        name: debian
         path: |
           *.deb

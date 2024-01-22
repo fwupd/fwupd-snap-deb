@@ -1,0 +1,29 @@
+name: Tag
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+
+  tag:
+    name: Tag Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        id: download
+        with:
+          name: debian
+
+      - name: Release the Package
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ needs.build.outputs.deb }}
