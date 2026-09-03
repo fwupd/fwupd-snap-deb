@@ -11,8 +11,8 @@ Package: fwupd-snap
 Architecture: amd64
 Pre-Depends: debconf, snapd
 Depends: ${misc:Depends}
-Replaces: fwupd (<< 2.0)
-Breaks: fwupd (<< 2.0)
+Replaces: fwupd (<< 2.2)
+Breaks: fwupd (<< 2.2)
 Provides: fwupd
 Section: oldlibs
 Description: Transitional package - fwupd -> fwupd snap

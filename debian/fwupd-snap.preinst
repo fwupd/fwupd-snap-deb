@@ -1,6 +1,7 @@
 #!/bin/sh -e
 
-CHANNEL=$(dpkg-query -f '${Version}' -W fwupd-snap | awk -F "-" '{print $1}')/stable
+#CHANNEL=$(dpkg-query -f '${Version}' -W fwupd-snap | awk -F "-" '{print $1}')/stable
+CHANNEL=latest/stable
 
 skip_unusable_snapd() {
     if [ -e "/run/snapd.socket" ]; then

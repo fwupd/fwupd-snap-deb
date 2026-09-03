@@ -1,3 +1,21 @@
+fwupd-snap (2.1.x-0ubuntu1) stonking; urgency=medium
+
+  * Update to 2.1.x stream (LP: #2122253)
+
+ -- Mario Limonciello <mario.limonciello@amd.com>  Thu, 03 Sep 2026 14:13:12 -0500
+
+fwupd-snap (1.9.x-0ubuntu3) resolute; urgency=medium
+
+  * No-change mass rebuild for Ubuntu 26.04 (LP: #2132257)
+
+ -- Graham Inggs <ginggs@ubuntu.com>  Thu, 11 Dec 2025 21:13:28 +0000
+
+fwupd-snap (1.9.x-0ubuntu2) noble; urgency=medium
+
+  * No-change rebuild for CVE-2024-3094
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Sun, 31 Mar 2024 05:29:44 +0000
+
 fwupd-snap (1.9.x-0ubuntu1) noble; urgency=medium
 
   * Initial release

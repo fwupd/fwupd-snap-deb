@@ -1,6 +1,7 @@
 #!/bin/sh -e
 
-CHANNEL=$(dpkg-query -f '${Version}' -W fwupd-snap | awk -F "-" '{print $1}')/stable
+#CHANNEL=$(dpkg-query -f '${Version}' -W fwupd-snap | awk -F "-" '{print $1}')/stable
+CHANNEL=latest/stable
 COMMAND=$(basename $0)
 if ! [ -x /snap/bin/fwupd.$COMMAND ]; then
     echo "" >&2
